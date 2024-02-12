@@ -1,8 +1,10 @@
 
+import java.io.*;
 import java.util.Scanner;
 import Exception.DukeUnknownCommandException;
 import Exception.DukeException;
 import java.util.ArrayList;
+
 
 public class Duke {
     public static void main(String[] args) {
@@ -12,6 +14,36 @@ public class Duke {
         System.out.println("Hello! Boss I'm your " + logo);
         System.out.println("What can I do for you?");
 
+        String path = "data/tasks.txt";
+        try {
+            BufferedReader Reader = new BufferedReader(new FileReader(path));
+            String line;
+            while ( (line = Reader.readLine()) != null ) {
+                String[] linearr = line.split(" \\| ");
+                Task cur = null;
+                switch (linearr[0]) {
+                    case "Todo":
+                        cur = new Todo(linearr[2]);
+                        break;
+                    case "Deadline":
+                        cur = new Deadline(linearr[2], linearr[3]);
+                        break;
+                    case "Event":
+                        String[] time = linearr[3].substring(5).split(" to ");
+                        cur = new Event(linearr[2], time[0], time[1]);
+                        break;
+                }
+                cur.setStatusIcon(linearr[1].equals("1"));
+                NumOfTask ++;
+                Taskarr.add(cur);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (IOException e) {
+            System.out.println("no lines in the file");
+        }
+        
         Scanner sc = new Scanner(System.in);
         boolean isExit = true;
         while (isExit) {
@@ -20,8 +52,17 @@ public class Duke {
                 String[] command = commandString.split(" ", 2);
 
                 if(command[0].equals("bye")) {
+                    BufferedWriter Writer = new BufferedWriter(new FileWriter(path));
+                    String tasks = "" ;
+                    for (Task task : Taskarr) {
+                        tasks += task.toSaveString() + "\n";
+                    }
+                    Writer.write(tasks);
+                    Writer.close();
+
                     System.out.println("Bye. CMU_bot is always here for you, see you again!");
                     isExit = false;
+
                 } else if (command[0].equals("List")) {
                     System.out.println("Here are the tasks in your list:");
                     for (int i = 0; i < NumOfTask; i ++) {
@@ -71,6 +112,7 @@ public class Duke {
                     String des = tasktime[0];
                     String from = tasktime[1].substring(5);
                     String to = tasktime[2].substring(3);
+                    String time = " (from: " + from + " to: " + to + ")";
                     Event event = new Event(des, from, to);
                     Taskarr.add(event);
                     NumOfTask ++;
@@ -102,6 +144,8 @@ public class Duke {
 
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("file not found");
             }
 
 

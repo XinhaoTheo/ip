@@ -15,6 +15,11 @@ public class Task {
         this.isDone = bool;
     }
 
+    public String toSaveString() {
+        return (isDone ? "1" : "0");
+    }
+
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;

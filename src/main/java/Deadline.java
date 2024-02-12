@@ -7,6 +7,12 @@ public class Deadline extends Task{
         this.by = by;
     }
 
+
+    @Override
+    public String toSaveString() {
+        return String.format("Deadline | %s | %s | %s", super.toSaveString(), description, by);
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
