@@ -1,3 +1,4 @@
-Todo | 1 | borrow book
-Deadline | 0 | return book | 2024-02-14
-Event | 1 | project meeting | from 2023-12-30 to 2023-12-31
+todo | 1 | borrow book
+deadline | 0 | return book | 2024-02-14
+event | 1 | project meeting | from 2023-12-30 to 2023-12-31
+deadline | 0 | finish cs2106 ip | 2024-02-25

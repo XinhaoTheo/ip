@@ -1,0 +1,71 @@
+package mainDuke;
+
+import mainDuke.TaskList;
+import task.*;
+import Exception.DukeException;
+
+import java.io.*;
+import java.util.ArrayList;
+
+public class Storage {
+    private String filepath = "data/tasks.txt";
+
+    public Storage(String filepath) {
+        this.filepath = filepath;
+    }
+
+    public ArrayList<Task> loadFile() throws DukeException {
+        try {
+            BufferedReader Reader = new BufferedReader(new FileReader(filepath));
+            String line;
+            ArrayList<Task> tasklist = new ArrayList<>();
+            while ( (line = Reader.readLine()) != null ) {
+                String[] linearr = line.split(" \\| ");
+                Task cur = null;
+                switch (linearr[0]) {
+                    case "todo":
+                        cur = new Todo(linearr[2]);
+                        break;
+                    case "deadline":
+                        cur = new Deadline(linearr[2], linearr[3]);
+                        break;
+                    case "event":
+                        String[] time = linearr[3].substring(5).split(" to ");
+                        cur = new Event(linearr[2], time[0], time[1]);
+                        break;
+
+                    default:
+                        throw new DukeException("Unknown Command from File");
+                }
+                cur.setStatusIcon(linearr[1].equals("1"));
+                // System.out.println(cur);
+                // NumOfTask ++;
+                tasklist.add(cur);
+            }
+
+            return tasklist;
+
+        } catch (FileNotFoundException e) {
+            throw new DukeException("File not found");
+        } catch (IOException e) {
+            throw new DukeException("no lines in the file");
+        }
+    }
+
+    public void saveFile() {
+        try {
+            BufferedWriter Writer = new BufferedWriter(new FileWriter(filepath));
+            String tasks = "" ;
+            for (Task task : TaskList.getTaskList()) {
+                tasks += task.toSaveString() + "\n";
+            }
+            Writer.write(tasks);
+            Writer.close();
+
+        } catch (IOException e) {
+            System.out.println("file not found");
+        }
+    }
+
+
+}

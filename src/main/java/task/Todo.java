@@ -1,4 +1,6 @@
-public class Todo extends Task{
+package task;
+
+public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
@@ -6,7 +8,7 @@ public class Todo extends Task{
 
     @Override
     public String toSaveString() {
-        return String.format("Todo | %s | %s", super.toSaveString(), description);
+        return String.format("todo | %s | %s", super.toSaveString(), description);
     }
 
 

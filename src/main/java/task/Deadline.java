@@ -1,7 +1,10 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+package task;
 
-public class Deadline extends Task{
+import mainDuke.Parser;
+
+import java.time.LocalDate;
+
+public class Deadline extends Task {
 
     protected LocalDate by;
 
@@ -13,7 +16,7 @@ public class Deadline extends Task{
 
     @Override
     public String toSaveString() {
-        return String.format("Deadline | %s | %s | %s", super.toSaveString(), description, by);
+        return String.format("deadline | %s | %s | %s", super.toSaveString(), description, by);
     }
 
     @Override
