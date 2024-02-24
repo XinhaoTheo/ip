@@ -2,6 +2,8 @@ package mainDuke;
 
 import task.Task;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -47,6 +49,14 @@ public class Ui {
         // System.out.println(TaskList.getTaskList());
         System.out.println("Noted. I've removed this task:\n" + TaskList.getTaskList().get(i-1)
                 + " Now you have " + TaskList.getTaskList().size() + " tasks in the list");
+    }
+
+    public void printKeywordSearching(ArrayList<Task> List) {
+        System.out.println("Here are the matching tasks in your list");
+        for (int i = 0; i < List.size(); i ++ ) {
+            int num = i + 1;
+            System.out.println(num + List.get(i).toString());
+        }
     }
 
     public void printBye() {

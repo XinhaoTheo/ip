@@ -73,7 +73,10 @@ public class Parser {
 
                 return new UnmarkCommand(numToUnmark);
 
-
+            case "find":
+                String keyword = fullCommandArray[1];
+                return new FindCommand(keyword);
+                
             case "bye":
                 return new ExitCommand();
 

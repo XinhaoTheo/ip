@@ -1,7 +1,7 @@
 import mainDuke.TaskList;
 import org.junit.jupiter.api.Test;
-import task.Task;
 import task.Todo;
+import Exception.UnfoundKeywordException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -22,5 +22,26 @@ public class TaskListTest {
         tasklist.delete(1);
         assertEquals(0, TaskList.getTaskList().size());
     }
+
+    @Test
+    public void findTaskTest() {
+        TaskList tasklist = new TaskList();
+
+        Todo todo = new Todo("finish cs2103 ip");
+        tasklist.add(todo);
+        try {
+            assertEquals("[T][ ] finish cs2103 ip", tasklist.findTask("cs2103").get(0).toString());
+            //fail();
+        } catch (UnfoundKeywordException e) {
+            assertEquals("Keyword cannot be found :-(", e.getMessage());
+
+        }
+
+
+
+
+
+    }
+
 
 }
