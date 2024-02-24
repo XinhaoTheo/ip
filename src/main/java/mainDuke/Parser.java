@@ -84,9 +84,8 @@ public class Parser {
     }
 
     public static LocalDate stringToDate(String date) throws DateTimeParseException {
-        try {
-            LocalDate localdate = LocalDate.parse(date);
-            return localdate;
+         try {
+        return LocalDate.parse(date);
         } catch (DateTimeParseException e) {
             System.out.println("The time format is not correct\n" +
                     "Remember to add 0 before any number less than 10\n" +
