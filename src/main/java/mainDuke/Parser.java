@@ -12,8 +12,20 @@ import Exception.DukeException;
 import Exception.DukeUnknownCommandException;
 import Exception.DukeInvalidTimeException;
 
+/**
+ * Parser class is responsible to help to convert all the commands received
+ * to the different commands which can be executed.
+ * Since we receive the plain words and sentences from the user
+ * we need the conversion to let the ChatBot understand the command.
+ */
 public class Parser {
 
+    /**
+     * This method will take all the commands received converted to
+     * @param fullCommand takes from our command which is a string
+     * @return the corresponding Command which will be executed
+     * @throws DukeUnknownCommandException the invalid command
+     */
     public static Command parse(String fullCommand) throws DukeUnknownCommandException {
         String[] fullCommandArray = fullCommand.split(" ",2);
         String firstCommand = fullCommandArray[0];
