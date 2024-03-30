@@ -95,6 +95,14 @@ public class Parser {
 
     }
 
+    /**
+     * LocalDate method is used to convert the date in string to the object
+     * in Java data format
+     * @param date in String
+     * @return LocalDate in java date
+     * @throws DateTimeParseException time format for input string is not correct
+     */
+
     public static LocalDate stringToDate(String date) throws DateTimeParseException {
          try {
         return LocalDate.parse(date);
@@ -107,6 +115,11 @@ public class Parser {
 
     }
 
+    /**
+     * dateToString method is used to convert Java date to the string in "MMM dd yyyy" format
+     * @param date which is Java date
+     * @return string of date in "MMM dd yyyy" format
+     */
     public static String dateToString(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
         return date.format(formatter);

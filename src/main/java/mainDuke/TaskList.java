@@ -4,6 +4,10 @@ import task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Tasklist class will be responsible for all the task operations like add,
+ * delete, mark unmark, find. its attribute is the arraylist to sore all the tasks.
+ */
 public class TaskList {
 
     private static ArrayList<Task> tasklist;

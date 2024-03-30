@@ -4,6 +4,10 @@ import task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Ui class is responsible for all the printing working showing in the computer
+ * This will include print the list, instruction response and notice, response for commands
+ */
 public class Ui {
     private Scanner sc;
     public Ui() {

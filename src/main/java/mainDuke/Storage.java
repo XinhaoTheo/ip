@@ -7,6 +7,11 @@ import Exception.DukeException;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Storage class is responsible for the data storage
+ * file path will become the attribute of the class, it will be responsible for saving
+ * and loading every task added and stored.
+ */
 public class Storage {
     private String filepath = "data/tasks.txt";
 
@@ -14,6 +19,11 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * Responsible for loading the stored tasks to the current operation workplace task list
+     * @return None
+     * @throws DukeException the coomand in the file is invalid
+     */
     public ArrayList<Task> loadFile() throws DukeException {
         try {
             BufferedReader Reader = new BufferedReader(new FileReader(filepath));
@@ -52,6 +62,9 @@ public class Storage {
         }
     }
 
+    /**
+     * save all the added tasks to the data file
+     */
     public void saveFile() {
         try {
             BufferedWriter Writer = new BufferedWriter(new FileWriter(filepath));
